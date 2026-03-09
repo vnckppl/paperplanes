@@ -1,4 +1,4 @@
-#+HTML_HEAD: <link rel="stylesheet" href="/paperplanes/style.css">
+#+SETUPFILE: setup.org
 #+TITLE: Blog Posts Relating to Coding and Neuroscience
 
 * Posts
