@@ -50,6 +50,8 @@ fi
 docker exec -i python311-container python3 "$@"
 #+end_src
 
+You have to run this wrapper script prior to calling python commands in emacs to ensure the container is active in the background. Otherwise, there is no REPL to send the commands to.
+
 ** Emacs setup
 Run the following to ensure that the python REPL from the docker is used.
 #+begin_src elisp
@@ -57,4 +59,4 @@ Run the following to ensure that the python REPL from the docker is used.
 (setq python-shell-interpreter-args "-i")
 #+end_src
 
-Now I was able to run the desired python configuration inside emacs.
+Now I was able to run the desired python configuration inside emacs. To me, this feels much cleaner than having to switch between system wide python versions or building python from source.
