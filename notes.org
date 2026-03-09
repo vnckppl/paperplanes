@@ -1,0 +1,32 @@
+#+TITLE: PaperPlanes Github Blog
+
+* I am using automated conversion from org to html via org-knitr
+
+Setup:
+#+begin_src bash :results output none
+cd "/datadisk/Private/Boneless/20260308_GithubBlogPaperPlanes"
+mkdir -p .github/workflows
+#+end_src
+
+Tangle the ~publish.yml~ file:
+#+begin_src yaml-ts :tangle .github/workflows/publish.yml
+name: Export
+on: [push]
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Export Org files to GitHub Pages
+        uses: tecosaur/org-knit-action@v0.3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages
+#+end_src
+
+Enable GitHub Pages:
+- Go to https://github.com/vnckppl/paperplanes/settings/pages
+- Under Source, select the gh-pages branch
+- Click Save
