@@ -14,8 +14,13 @@ jobs:
       - name: Copy static files
         run: |
           mkdir -p public
-          cp style.css public/
-          cp -r fonts/ public/
+          rsync -av \
+          --exclude='.git' \
+          --exclude='*.org' \
+          --exclude='public' \
+          --exclude='.github' \
+          --exclude='*.yml' \
+          . public/
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
