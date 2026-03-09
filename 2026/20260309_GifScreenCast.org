@@ -1,6 +1,6 @@
 #+SETUPFILE: ../setup.org
 #+TITLE: gif-screencast on Ubuntu 24.04
-=gif-screencast= is a tool to easily generate screencast from emacs and save them as animated gifs. The package is available via MELPA and [[https://gitlab.com/ambrevar/emacs-gif-screencast][gitlab]]. Configuration options differ per system, so I am sharing my setup for Ubuntu 24.04 with Wayland, as that particular combination is not listed in the setup instructions on Gitlab.
+=gif-screencast= is a tool to easily generate screencasts from emacs and save them as animated gifs. The package is available via MELPA and [[https://gitlab.com/ambrevar/emacs-gif-screencast][gitlab]]. Configuration options differ per system, so I am sharing my setup for Ubuntu 24.04 with Wayland, as that particular combination is not listed in the setup instructions on Gitlab.
 
 * System prerequisites
 ** grimshot
@@ -58,3 +58,12 @@ Make sure to point the =gif-screencast-program= variable to the wrapper script.
 
 * Output
 If you don't set the =gif-screencast-output-directory= variable, by default, the temporary screenshots will be stored under ~/tmp/emacs<uid>~ and the output gif files will be stored under ~~/Videos~.
+
+* Usage
+Once installed, you can start and stop the screencast with =M-x gif-screencast-start-or-stop=.
+
+* Example
+#+caption: gif-screencast example
+#+attr_org: :width 300px
+#+attr_html: :width 800px
+[[file:./attachments/20260309_GifScreenCast.org.gif]]
