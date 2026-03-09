@@ -1,4 +1,4 @@
 #+TITLE: Blog Posts Relating to Coding and Neuroscience
 
 * Posts
-- 2026-03-08 [[2026/20260308_EmacsElpyPytonDocker.org][Setting up Python Inside a Docker Container for Emacs Elpy]]
+- 2026-03-08 [[file:2026/20260308_EmacsElpyPytonDocker.org][Setting up Python Inside a Docker Container for Emacs Elpy]]
