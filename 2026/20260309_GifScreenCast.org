@@ -51,9 +51,10 @@ Make sure to point the =gif-screencast-program= variable to the wrapper script.
    gif-screencast-program "/path/to/grimshot_screencast"
    gif-screencast-args '()
    gif-screencast-convert-program "convert"
-   gif-screencast-scale-factor 1.5)
+   gif-screencast-scale-factor 1.5
+   gif-screencast-output-directory "/output/folder")
   )
 #+end_src
 
 * Output
-By default, the temporary screenshots will be stored under ~/tmp/emacs<uid>~ and the output gif files will be stored under ~~/Videos~.
+If you don't set the =gif-screencast-output-directory= variable, by default, the temporary screenshots will be stored under ~/tmp/emacs<uid>~ and the output gif files will be stored under ~~/Videos~.
