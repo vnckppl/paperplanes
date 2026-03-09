@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-09 Mon 20:41 -->
+<!-- 2026-03-09 Mon 20:43 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>gif-screencast on Ubuntu 24.04</title>
@@ -210,15 +210,15 @@ hljs.highlightElement(block);
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org2b93696">1. System prerequisites</a>
+<li><a href="#org62db729">1. System prerequisites</a>
 <ul>
-<li><a href="#orga777e30">1.1. grimshot</a></li>
-<li><a href="#orga0ea13c">1.2. gifsicle</a></li>
+<li><a href="#org334b83d">1.1. grimshot</a></li>
+<li><a href="#orgc7c1809">1.2. gifsicle</a></li>
 </ul>
 </li>
-<li><a href="#org620fe51">2. Wrapper script</a></li>
-<li><a href="#org5e048a7">3. Emacs setup</a></li>
-<li><a href="#org9ecfb82">4. Output</a></li>
+<li><a href="#orgba95cd9">2. Wrapper script</a></li>
+<li><a href="#orgda97186">3. Emacs setup</a></li>
+<li><a href="#org2cc369d">4. Output</a></li>
 </ul>
 </div>
 </div>
@@ -226,12 +226,12 @@ hljs.highlightElement(block);
 <code>gif-screencast</code> is a tool to easily generate screencast from emacs and save them as animated gifs. The package is available via MELPA and <a href="https://gitlab.com/ambrevar/emacs-gif-screencast">gitlab</a>. Configuration options differ per system, so I am sharing my setup for Ubuntu 24.04 with Wayland, as that particular combination is not listed in the setup instructions on Gitlab.
 </p>
 
-<div id="outline-container-org2b93696" class="outline-2">
-<h2 id="org2b93696"><span class="section-number-2">1.</span> System prerequisites</h2>
+<div id="outline-container-org62db729" class="outline-2">
+<h2 id="org62db729"><span class="section-number-2">1.</span> System prerequisites</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orga777e30" class="outline-3">
-<h3 id="orga777e30"><span class="section-number-3">1.1.</span> grimshot</h3>
+<div id="outline-container-org334b83d" class="outline-3">
+<h3 id="org334b83d"><span class="section-number-3">1.1.</span> grimshot</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 The Gitlab instructions mention that you can use flameshot for creating the initial screenshots. Because I already use grimshot, and because I don't feel the need to have multiple tools for generating screenshots on my system, I set up grimshot, which can be installed with:
@@ -244,8 +244,8 @@ The Gitlab instructions mention that you can use flameshot for creating the init
 </div>
 </div>
 
-<div id="outline-container-orga0ea13c" class="outline-3">
-<h3 id="orga0ea13c"><span class="section-number-3">1.2.</span> gifsicle</h3>
+<div id="outline-container-orgc7c1809" class="outline-3">
+<h3 id="orgc7c1809"><span class="section-number-3">1.2.</span> gifsicle</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 <code>gifsicle</code> is an optional tool for <code>gif-screencast</code> that optimizes the gif file. If you don't install it, <code>gif-screencast</code> will still run and produce a gif output, but it will give a warning. <code>gisicle</code> was not available via my package manager, but can be build from source (<a href="https://github.com/kohler/gifsicle">github</a>):
@@ -273,8 +273,8 @@ sudo make install
 </div>
 </div>
 
-<div id="outline-container-org620fe51" class="outline-2">
-<h2 id="org620fe51"><span class="section-number-2">2.</span> Wrapper script</h2>
+<div id="outline-container-orgba95cd9" class="outline-2">
+<h2 id="orgba95cd9"><span class="section-number-2">2.</span> Wrapper script</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 The following wrapper script around grimshot will be called by <code>gif-screencat</code> every time you switch a buffer/window to create a screenshot:
@@ -291,8 +291,8 @@ Save this script and make it executable, e.g., .
 </div>
 </div>
 
-<div id="outline-container-org5e048a7" class="outline-2">
-<h2 id="org5e048a7"><span class="section-number-2">3.</span> Emacs setup</h2>
+<div id="outline-container-orgda97186" class="outline-2">
+<h2 id="orgda97186"><span class="section-number-2">3.</span> Emacs setup</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Make sure to point the <code>gif-screencast-program</code> variable to the wrapper script.
@@ -314,8 +314,8 @@ Make sure to point the <code>gif-screencast-program</code> variable to the wrapp
 </div>
 </div>
 
-<div id="outline-container-org9ecfb82" class="outline-2">
-<h2 id="org9ecfb82"><span class="section-number-2">4.</span> Output</h2>
+<div id="outline-container-org2cc369d" class="outline-2">
+<h2 id="org2cc369d"><span class="section-number-2">4.</span> Output</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 If you don't set the <code>gif-screencast-output-directory</code> variable, by default, the temporary screenshots will be stored under <code>/tmp/emacs&lt;uid&gt;</code> and the output gif files will be stored under <code>~/Videos</code>.
@@ -324,7 +324,7 @@ If you don't set the <code>gif-screencast-output-directory</code> variable, by d
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2026-03-09 Mon 20:41</p>
+<p class="date">Created: 2026-03-09 Mon 20:43</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
