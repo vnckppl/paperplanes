@@ -66,4 +66,4 @@ Once installed, you can start and stop the screencast with =M-x gif-screencast-s
 #+caption: gif-screencast example
 #+attr_org: :width 300px
 #+attr_html: :width 800px
-[[file:./attachments/20260309_GifScreenCast.org.gif]]
+[[file:./attachments/20260309_GifScreenCast.gif]]
