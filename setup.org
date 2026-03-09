@@ -1,4 +1,10 @@
 #+HTML_HEAD: <link rel="stylesheet" href="/paperplanes/style.css">
 #+HTML_HEAD: <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/base16/apprentice.min.css">
 #+HTML_HEAD: <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-#+HTML_HEAD: <script>hljs.highlightAll();</script>
+#+HTML_HEAD: <script>
+#+HTML_HEAD:   document.addEventListener('DOMContentLoaded', function() {
+#+HTML_HEAD:     document.querySelectorAll('pre.src').forEach(function(block) {
+#+HTML_HEAD:       hljs.highlightElement(block);
+#+HTML_HEAD:     });
+#+HTML_HEAD:   });
+#+HTML_HEAD: </script>
