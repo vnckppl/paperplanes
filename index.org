@@ -1,3 +1,4 @@
+#+HTML_HEAD: <link rel="stylesheet" href="/paperplanes/style.css">
 #+TITLE: Blog Posts Relating to Coding and Neuroscience
 
 * Posts

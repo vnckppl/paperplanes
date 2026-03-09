@@ -1,0 +1,19 @@
+
+
+/* roboto-mono-regular - latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: url('fonts/roboto-mono-v31-latin-regular.woff2') format('woff2');
+}
+
+/* roboto-mono-italic - latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Roboto Mono';
+  font-style: italic;
+  font-weight: 400;
+  src: url('fonts/roboto-mono-v31-latin-italic.woff2') format('woff2');
+}

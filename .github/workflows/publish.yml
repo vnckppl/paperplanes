@@ -11,6 +11,11 @@ jobs:
         run: sudo apt install emacs-nox --yes
       - name: Build the site
         run: emacs --batch --no-init-file --eval "(require 'ox-publish)" --eval "(setq org-publish-project-alist '((\"blog\" :base-directory \".\" :base-extension \"org\" :publishing-directory \"./public\" :publishing-function org-html-publish-to-html :recursive t)))" --eval "(org-publish-all t)"
+      - name: Copy static files
+        run: |
+          mkdir -p public
+          cp style.css public/
+          cp -r fonts/ public/
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
