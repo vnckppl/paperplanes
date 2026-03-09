@@ -1,1 +1,60 @@
+#+SETUPFILE: ../setup.org
 #+TITLE: Use Python Inside a Docker Container for Emacs Elpy
+For a particular project I needed to use python 3.11, but my system had 3.12 installed. While I could use readily available tools (pyenv) or build python from source, I wanted to see if I could use python in a docker environment directly inside emacs via elpy. The main goals was to use the python interpreter interactively when editing python source blocks in org mode files. The following steps made this possible:
+
+* Write the Docker recipe file
+I tangled the recipe to ~/tmp/dockerfile_python311~.
+
+#+begin_src python :tangle /tmp/dockerfile_python311
+# * Use the Python 3.11 slim image
+FROM python:3.11-slim
+
+# * Set the working directory
+WORKDIR /app
+
+# * Upgrade pip and install packages inside the container
+RUN python -m pip install --upgrade pip \
+    && pip install \
+    numpy \
+    scipy \
+    nibabel \
+    nilearn \
+    neuromaps \
+    templateflow \
+    scikit-learn \
+    ipython
+
+# * Start Python REPL
+CMD ["python3"]
+#+end_src
+
+* Build the docker from the recipe
+#+begin_src bash
+docker \
+    build \
+    -t python311 \
+    -f /tmp/dockerfile_python311 \
+    .
+#+end_src
+
+* Run via emacs
+In Emacs, point elpy to the python 3.11 docker environment via a wrapper file:
+
+** Wrapper script
+I tangled this to ~/tmp/python3.11~. If you want something persistent, pick a different path (outside of ~/tmp~)
+#+begin_src bash :tangle /tmp/python3.11 :shebang "#!/usr/bin/env bash"
+# * Start container if not running
+if ! docker ps --format '{{.Names}}' | grep -q '^python311-container$'; then
+    docker start python311-container > /dev/null
+fi
+docker exec -i python311-container python3 "$@"
+#+end_src
+
+** Emacs setup
+Run the following to ensure that the python REPL from the docker is used.
+#+begin_src elisp
+(setq python-shell-interpreter "/tmp/python3.11")
+(setq python-shell-interpreter-args "-i")
+#+end_src
+
+Now I was able to run the desired python configuration inside emacs.
