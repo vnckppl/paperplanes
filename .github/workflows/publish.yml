@@ -7,8 +7,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Export Org files to GitHub Pages
-        uses: tecosaur/org-knit-action@v0.3
+      - name: Install Emacs
+        run: sudo apt install emacs-nox --yes
+      - name: Build the site
+        run: emacs --batch --no-init-file --eval "(require 'ox-publish)" --eval "(setq org-publish-project-alist '((\"blog\" :base-directory \".\" :base-extension \"org\" :publishing-directory \"./public\" :publishing-function org-html-publish-to-html :recursive t)))" --eval "(org-publish-all t)"
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: gh-pages
+          folder: public
