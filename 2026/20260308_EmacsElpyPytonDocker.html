@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-09 Mon 04:52 -->
+<!-- 2026-03-09 Mon 20:37 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Use Python Inside a Docker Container for Emacs Elpy</title>
@@ -210,12 +210,12 @@ hljs.highlightElement(block);
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orga59a0f6">1. Write the Docker recipe file</a></li>
-<li><a href="#orge937754">2. Build the docker from the recipe</a></li>
-<li><a href="#org0a50270">3. Run via emacs</a>
+<li><a href="#orge544412">1. Write the Docker recipe file</a></li>
+<li><a href="#org1eccc87">2. Build the docker from the recipe</a></li>
+<li><a href="#org2b34483">3. Run via emacs</a>
 <ul>
-<li><a href="#org4e95d37">3.1. Wrapper script</a></li>
-<li><a href="#orgb395ca9">3.2. Emacs setup</a></li>
+<li><a href="#orgf037e30">3.1. Wrapper script</a></li>
+<li><a href="#orge1977d7">3.2. Emacs setup</a></li>
 </ul>
 </li>
 </ul>
@@ -225,8 +225,8 @@ hljs.highlightElement(block);
 For a particular project I needed to use python 3.11, but my system had 3.12 installed. While I could use readily available tools (pyenv) or build python from source, I wanted to see if I could use python in a docker environment directly inside emacs via elpy. The main goals was to use the python interpreter interactively when editing python source blocks in org mode files. The following steps made this possible:
 </p>
 
-<div id="outline-container-orga59a0f6" class="outline-2">
-<h2 id="orga59a0f6"><span class="section-number-2">1.</span> Write the Docker recipe file</h2>
+<div id="outline-container-orge544412" class="outline-2">
+<h2 id="orge544412"><span class="section-number-2">1.</span> Write the Docker recipe file</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 I tangled the recipe to <code>/tmp/dockerfile_python311</code>.
@@ -258,8 +258,8 @@ CMD ["python3"]
 </div>
 </div>
 
-<div id="outline-container-orge937754" class="outline-2">
-<h2 id="orge937754"><span class="section-number-2">2.</span> Build the docker from the recipe</h2>
+<div id="outline-container-org1eccc87" class="outline-2">
+<h2 id="org1eccc87"><span class="section-number-2">2.</span> Build the docker from the recipe</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 <pre class="src src-bash">docker \
@@ -272,16 +272,16 @@ CMD ["python3"]
 </div>
 </div>
 
-<div id="outline-container-org0a50270" class="outline-2">
-<h2 id="org0a50270"><span class="section-number-2">3.</span> Run via emacs</h2>
+<div id="outline-container-org2b34483" class="outline-2">
+<h2 id="org2b34483"><span class="section-number-2">3.</span> Run via emacs</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 In Emacs, point elpy to the python 3.11 docker environment via a wrapper file:
 </p>
 </div>
 
-<div id="outline-container-org4e95d37" class="outline-3">
-<h3 id="org4e95d37"><span class="section-number-3">3.1.</span> Wrapper script</h3>
+<div id="outline-container-orgf037e30" class="outline-3">
+<h3 id="orgf037e30"><span class="section-number-3">3.1.</span> Wrapper script</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 I tangled this to <code>/tmp/python3.11</code>. If you want something persistent, pick a different path (outside of <code>/tmp</code>)
@@ -301,8 +301,8 @@ You have to run this wrapper script prior to calling python commands in emacs to
 </div>
 </div>
 
-<div id="outline-container-orgb395ca9" class="outline-3">
-<h3 id="orgb395ca9"><span class="section-number-3">3.2.</span> Emacs setup</h3>
+<div id="outline-container-orge1977d7" class="outline-3">
+<h3 id="orge1977d7"><span class="section-number-3">3.2.</span> Emacs setup</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 Run the following to ensure that the python REPL from the docker is used.
@@ -321,7 +321,7 @@ Now I was able to run the desired python configuration inside emacs. To me, this
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2026-03-09 Mon 04:52</p>
+<p class="date">Created: 2026-03-09 Mon 20:37</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

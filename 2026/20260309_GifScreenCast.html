@@ -6,7 +6,7 @@
 <!-- 2026-03-09 Mon 20:37 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>&lrm;</title>
+<title>gif-screencast on Ubuntu 24.04</title>
 <meta name="generator" content="Org Mode" />
 <style>
   #content { max-width: 60em; margin: auto; }
@@ -205,6 +205,122 @@ hljs.highlightElement(block);
 </head>
 <body>
 <div id="content" class="content">
+<h1 class="title">gif-screencast on Ubuntu 24.04</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgcc298ea">1. System prerequisites</a>
+<ul>
+<li><a href="#org668cf9f">1.1. grimshot</a></li>
+<li><a href="#org0bf253d">1.2. gifsicle</a></li>
+</ul>
+</li>
+<li><a href="#orgd7714e8">2. Wrapper script</a></li>
+<li><a href="#org13566e3">3. Emacs setup</a></li>
+<li><a href="#org66b6c69">4. Output</a></li>
+</ul>
+</div>
+</div>
+<p>
+<code>gif-screencast</code> is a tool to easily generate screencast from emacs and save them as animated gifs. The package is available via MELPA and <a href="https://gitlab.com/ambrevar/emacs-gif-screencast">gitlab</a>. Configuration options differ per system, so I am sharing my setup for Ubuntu 24.04 with Wayland, as that particular combination is not listed in the setup instructions on Gitlab.
+</p>
+
+<div id="outline-container-orgcc298ea" class="outline-2">
+<h2 id="orgcc298ea"><span class="section-number-2">1.</span> System prerequisites</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org668cf9f" class="outline-3">
+<h3 id="org668cf9f"><span class="section-number-3">1.1.</span> grimshot</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+The Gitlab instructions mention that you can use flameshot for creating the initial screenshots. Because I already use grimshot, and because I don't feel the need to have multiple tools for generating screenshots on my system, I set up grimshot, which can be installed with:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">sudo apt-get install grimshot
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0bf253d" class="outline-3">
+<h3 id="org0bf253d"><span class="section-number-3">1.2.</span> gifsicle</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+<code>gifsicle</code> is an optional tool for <code>gif-screencast</code> that optimizes the gif file. If you don't install it, <code>gif-screencast</code> will still run and produce a gif output, but it will give a warning. <code>gisicle</code> was not available via my package manager, but can be build from source (<a href="https://github.com/kohler/gifsicle">github</a>):
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash"># * Enviornment
+cd "${HOME}/Software" || exit
+mkdir -p "${HOME}/Software"
+
+
+# * Git clone
+git clone https://github.com/kohler/gifsicle.git
+
+
+# * Build
+cd "${HOME}/Software/gifsicle" || exit
+autoreconf -i
+./configure
+make
+sudo make install
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd7714e8" class="outline-2">
+<h2 id="orgd7714e8"><span class="section-number-2">2.</span> Wrapper script</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+The following wrapper script around grimshot will be called by <code>gif-screencat</code> every time you switch a buffer/window to create a screenshot:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">/usr/bin/grimshot save active "${1}"
+</pre>
+</div>
+
+<p>
+Save this script and make it executable, e.g., .
+</p>
+</div>
+</div>
+
+<div id="outline-container-org13566e3" class="outline-2">
+<h2 id="org13566e3"><span class="section-number-2">3.</span> Emacs setup</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Make sure to point the <code>gif-screencast-program</code> variable to the wrapper script.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elisp">(use-package gif-screencast
+  :ensure t
+  :config
+  (setq
+   gif-screencast-program "/path/to/grimshot_screencast"
+   gif-screencast-args '()
+   gif-screencast-convert-program "convert"
+   gif-screencast-scale-factor 1.5)
+  )
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org66b6c69" class="outline-2">
+<h2 id="org66b6c69"><span class="section-number-2">4.</span> Output</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+By default, the temporary screenshots will be stored under <code>/tmp/emacs&lt;uid&gt;</code> and the output gif files will be stored under <code>~/Videos</code>.
+</p>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="date">Created: 2026-03-09 Mon 20:37</p>
