@@ -41,22 +41,48 @@ docker \
 In Emacs, point elpy to the python 3.11 docker environment via a wrapper file:
 
 ** Wrapper script
+*** Run docker
+Run docker with mounts and leave it open in a shell. E.g.,
+#+begin_src bash
+# * Environment
+idir="${HOME}/Downloads"
+odir="/datadisk/tmp/output"
+mkdir -p "${odir}"
+
+
+# * Run the container with the mounts
+docker run \
+    --rm \
+    -v "${idir}":/input:ro \
+    -v "${odir}":/output \
+    -it \
+    --name python311-docker \
+    python311:latest
+#+end_src
+
+*** Create a wrapper script for starting the container
 I tangled this to ~/tmp/python3.11~. If you want something persistent, pick a different path (outside of ~/tmp~)
-#+begin_src bash :tangle /tmp/python3.11 :shebang "#!/usr/bin/env bash"
+#+begin_src bash :tangle /tmp/python3.11 :shebang "#!/usr/bin/env bash" :results output none
 # * Start container if not running
-if ! docker ps --format '{{.Names}}' | grep -q '^python311-container$'; then
-    docker start python311-container > /dev/null
+if ! docker ps --format '{{.Names}}' | grep -q '^python311-docker$'; then
+    docker start python311-docker > /dev/null
 fi
-docker exec -i python311-container python3 "$@"
+docker exec -i python311-docker python3 "$@"
 #+end_src
 
 You have to run this wrapper script prior to calling python commands in emacs to ensure the container is active in the background. Otherwise, there is no REPL to send the commands to.
 
 ** Emacs setup
 Run the following to ensure that the python REPL from the docker is used.
-#+begin_src elisp
+#+begin_src elisp :results output none
 (setq python-shell-interpreter "/tmp/python3.11")
 (setq python-shell-interpreter-args "-i")
 #+end_src
 
 Now I was able to run the desired python configuration inside emacs. To me, this feels much cleaner than having to switch between system wide python versions or building python from source.
+
+** Example
+#+caption: Running Python via Docker with elpy in emacs example
+#+attr_org: :width 300px
+#+attr_html: :width 800px
+[[file:./attachments/20260308_EmacsElpyPytonDocker.gif]]
