@@ -8,3 +8,18 @@
 #+HTML_HEAD:     });
 #+HTML_HEAD:   });
 #+HTML_HEAD: </script>
+
+
+# Sidebar
+#+HTML_HEAD: <script>
+#+HTML_HEAD:   document.addEventListener('DOMContentLoaded', function() {
+#+HTML_HEAD:     var sidebar = document.createElement('nav');
+#+HTML_HEAD:     sidebar.id = 'sidebar';
+#+HTML_HEAD:     sidebar.innerHTML = '<ul>'
+#+HTML_HEAD:       + '<li><a href="/paperplanes/">Home</a></li>'
+#+HTML_HEAD:       + '<li><a href="/paperplanes/about.html">About</a></li>'
+#+HTML_HEAD:       + '<li><a href="/paperplanes/posts.html">Posts</a></li>'
+#+HTML_HEAD:       + '</ul>';
+#+HTML_HEAD:     document.body.insertBefore(sidebar, document.body.firstChild);
+#+HTML_HEAD:   });
+#+HTML_HEAD: </script>
