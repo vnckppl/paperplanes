@@ -1,4 +1,5 @@
 #+SETUPFILE: setup.org
+#+OPTIONS: toc:nil
 #+TITLE: About
 
 * Introduction

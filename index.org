@@ -1,4 +1,5 @@
 #+SETUPFILE: setup.org
+#+OPTIONS: toc:nil
 #+TITLE: Blog Posts Revolving Around Coding, Configuring Emacs, and Neuroscience
 
 * Posts
