@@ -20,6 +20,11 @@
 #+HTML_HEAD:       + '<li><a href="/paperplanes/about.html">About</a></li>'
 #+HTML_HEAD:       + '<li><a href="/paperplanes/posts.html">Posts</a></li>'
 #+HTML_HEAD:       + '</ul>';
-#+HTML_HEAD:     document.body.insertBefore(sidebar, document.body.firstChild);
+#+HTML_HEAD:     var content = document.getElementById('content');
+#+HTML_HEAD:     var wrapper = document.createElement('div');
+#+HTML_HEAD:     wrapper.id = 'layout-wrapper';
+#+HTML_HEAD:     content.parentNode.insertBefore(wrapper, content);
+#+HTML_HEAD:     wrapper.appendChild(content);
+#+HTML_HEAD:     wrapper.appendChild(sidebar);
 #+HTML_HEAD:   });
 #+HTML_HEAD: </script>
