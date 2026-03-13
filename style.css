@@ -1,14 +1,57 @@
 /* This is tangled from: ./notes.org */
 
 /* Base */
+/* Layout wrapper */
 body {
     background-color: #2b2b2b;
     color: #ffffff;
     font-family: 'Roboto Mono', monospace;
     line-height: 1.6;
+    display: flex;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+/* Sidebar */
+#sidebar {
+    width: 200px;
+    min-width: 200px;
+    background-color: #1e1e1e;
+    border-right: 2px solid #fcba03;
+    padding: 2em 1em;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+#sidebar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#sidebar li {
+    margin-bottom: 0.75em;
+}
+
+#sidebar a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.9em;
+}
+
+#sidebar a:hover {
+    color: #fcba03;
+}
+
+/* Main content */
+#content {
     max-width: 860px;
     margin: 40px auto;
     padding: 0 20px;
+    flex: 1;
 }
 
 /* Headings */
