@@ -11,5 +11,5 @@
 - Here, I plan to post about anything that helped me automate or streamline my work.
 
 #+begin_center
-[[https://orcid.org/0000-0003-2036-7603][ORCID]] src_html{&#9679;} [[https://scholar.google.com/citations?user=2qPoqwoAAAAJ&hl][Google Scholar]] src_html{&#9679;} [[https://loop.frontiersin.org/people/116977/overview][Loop]]
+[[https://orcid.org/0000-0003-2036-7603][ORCID]] &#9679; [[https://scholar.google.com/citations?user=2qPoqwoAAAAJ&hl][Google Scholar]] &#9679; [[https://loop.frontiersin.org/people/116977/overview][Loop]]
 #+end_center
