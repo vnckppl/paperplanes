@@ -10,8 +10,8 @@
 - To process and analyze my research data, I mainly use R and Python with Emacs as my IDE.
 - Here, I plan to post about anything that helped me automate or streamline my work.
 
-#+begin_src html
+#+begin_export html
 <p class="center">
 <a href="https://orcid.org/0000-0003-2036-7603">ORCID</a> &#9679; <a href="https://scholar.google.com/citations?user=2qPoqwoAAAAJ&amp;hl">Google Scholar</a> &#9679; <a href="https://loop.frontiersin.org/people/116977/overview">Loop</a>
 </p>
-#+end_src
+#+end_export
