@@ -14,6 +14,10 @@ body {
 
 }
 
+.center {
+    text-align: center;
+}
+
 /* Layout wrapper */
 #layout-wrapper {
     display: flex;
