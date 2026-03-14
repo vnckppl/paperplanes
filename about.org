@@ -2,10 +2,14 @@
 #+OPTIONS: toc:nil
 #+TITLE: About
 
-* Introduction
+*Introduction*
 - I am a Neuroscientist and Research Associate Professor at the University of Utah - Department of Psychiatry.
 - My research focuses on how aging, neurodegenerative diseases, and neuropsychiatric disorders affect cognitive and motor function using neuropsychological testing and motor behavioral assessments.
 - With functional and structural Magnetic Resonance Imaging I try to understand and predict such behavioral outcomes.
 - Most of my published work is freely available through [[https://pubmed.ncbi.nlm.nih.gov/?term=Koppelmans+V+%5Bauth%5D&sort=date][PubMed]].
 - To process and analyze my research data, I mainly use R and Python with Emacs as my IDE.
 - Here, I plan to post about anything that helped me automate or streamline my work.
+
+#+begin_center
+[[https://orcid.org/0000-0003-2036-7603][ORCID]] src_html{&#9679;} [[https://scholar.google.com/citations?user=2qPoqwoAAAAJ&hl][Google Scholar]] src_html{&#9679;} [[https://loop.frontiersin.org/people/116977/overview][Loop]]
+#+end_center
