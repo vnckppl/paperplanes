@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-16 Mon 21:51 -->
+<!-- 2026-03-16 Mon 22:00 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Blog Posts Revolving Around Coding, Configuring Emacs, and Neuroscience</title>
@@ -195,13 +195,6 @@
 <link rel="stylesheet" href="/paperplanes/style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/base16/apprentice.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-document.querySelectorAll('pre.src').forEach(function(block) {
-hljs.highlightElement(block);
-});
-});
-</script>
 <style>
 pre.src { position: relative; padding-top: 30px; }
 .copy-btn { position: absolute; top: 5px; right: 5px; padding: 5px 10px; background: #333; color: #fff; border: none; cursor: pointer; }
@@ -210,14 +203,12 @@ pre.src { position: relative; padding-top: 30px; }
 document.addEventListener('DOMContentLoaded', function() {
 document.querySelectorAll('pre.src').forEach(function(block) {
 hljs.highlightElement(block);
-
 let btn = document.createElement('button');
 btn.className = 'copy-btn';
 btn.innerHTML = 'Copy';
 btn.addEventListener('click', function(e) {
 e.preventDefault();
-let text = block.innerText;
-navigator.clipboard.writeText(text).then(() => {
+navigator.clipboard.writeText(block.innerText).then(() => {
 btn.innerHTML = 'Copied!';
 setTimeout(() => btn.innerHTML = 'Copy', 2000);
 });
@@ -248,8 +239,8 @@ wrapper.appendChild(sidebar);
 <div id="content" class="content">
 <h1 class="title">Blog Posts Revolving Around Coding, Configuring Emacs, and Neuroscience</h1>
 
-<div id="outline-container-org3e06e39" class="outline-2">
-<h2 id="org3e06e39"><span class="section-number-2">1.</span> Posts</h2>
+<div id="outline-container-org44031a1" class="outline-2">
+<h2 id="org44031a1"><span class="section-number-2">1.</span> Posts</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>2026-03-08 <a href="2026/20260308_EmacsElpyPytonDocker.html">Setting up Python Inside a Docker Container for Emacs Elpy</a></li>
@@ -259,7 +250,7 @@ wrapper.appendChild(sidebar);
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2026-03-16 Mon 21:51</p>
+<p class="date">Created: 2026-03-16 Mon 22:00</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-16 Mon 21:51 -->
+<!-- 2026-03-16 Mon 22:00 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>gif-screencast on Ubuntu 24.04</title>
@@ -195,13 +195,6 @@
 <link rel="stylesheet" href="/paperplanes/style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/base16/apprentice.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-document.querySelectorAll('pre.src').forEach(function(block) {
-hljs.highlightElement(block);
-});
-});
-</script>
 <style>
 pre.src { position: relative; padding-top: 30px; }
 .copy-btn { position: absolute; top: 5px; right: 5px; padding: 5px 10px; background: #333; color: #fff; border: none; cursor: pointer; }
@@ -210,14 +203,12 @@ pre.src { position: relative; padding-top: 30px; }
 document.addEventListener('DOMContentLoaded', function() {
 document.querySelectorAll('pre.src').forEach(function(block) {
 hljs.highlightElement(block);
-
 let btn = document.createElement('button');
 btn.className = 'copy-btn';
 btn.innerHTML = 'Copy';
 btn.addEventListener('click', function(e) {
 e.preventDefault();
-let text = block.innerText;
-navigator.clipboard.writeText(text).then(() => {
+navigator.clipboard.writeText(block.innerText).then(() => {
 btn.innerHTML = 'Copied!';
 setTimeout(() => btn.innerHTML = 'Copy', 2000);
 });
@@ -251,17 +242,17 @@ wrapper.appendChild(sidebar);
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org19f1f9e">1. System prerequisites</a>
+<li><a href="#orgbc58371">1. System prerequisites</a>
 <ul>
-<li><a href="#org3db2ee1">1.1. grimshot</a></li>
-<li><a href="#org3be519d">1.2. gifsicle</a></li>
+<li><a href="#org574e7ba">1.1. grimshot</a></li>
+<li><a href="#org0efa82f">1.2. gifsicle</a></li>
 </ul>
 </li>
-<li><a href="#org822c8d3">2. Wrapper script</a></li>
-<li><a href="#orgd640bc6">3. Emacs setup</a></li>
-<li><a href="#orgd30f585">4. Output</a></li>
-<li><a href="#orgf805b6d">5. Usage</a></li>
-<li><a href="#orgeb4cc73">6. Example</a></li>
+<li><a href="#orgbc9accf">2. Wrapper script</a></li>
+<li><a href="#orgbafcda4">3. Emacs setup</a></li>
+<li><a href="#org5d55b62">4. Output</a></li>
+<li><a href="#orgb4afce5">5. Usage</a></li>
+<li><a href="#orgc8a43c6">6. Example</a></li>
 </ul>
 </div>
 </div>
@@ -269,12 +260,12 @@ wrapper.appendChild(sidebar);
 <code>gif-screencast</code> is a tool to easily generate screencasts from emacs and save them as animated gifs. The package is available via MELPA and <a href="https://gitlab.com/ambrevar/emacs-gif-screencast">gitlab</a>. Configuration options differ per system, so I am sharing my setup for Ubuntu 24.04 with Wayland, as that particular combination is not listed in the setup instructions on Gitlab.
 </p>
 
-<div id="outline-container-org19f1f9e" class="outline-2">
-<h2 id="org19f1f9e"><span class="section-number-2">1.</span> System prerequisites</h2>
+<div id="outline-container-orgbc58371" class="outline-2">
+<h2 id="orgbc58371"><span class="section-number-2">1.</span> System prerequisites</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org3db2ee1" class="outline-3">
-<h3 id="org3db2ee1"><span class="section-number-3">1.1.</span> grimshot</h3>
+<div id="outline-container-org574e7ba" class="outline-3">
+<h3 id="org574e7ba"><span class="section-number-3">1.1.</span> grimshot</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 The Gitlab instructions mention that you can use flameshot for creating the initial screenshots. Because I already use grimshot, and because I don't feel the need to have multiple tools for generating screenshots on my system, I set up grimshot, which can be installed with:
@@ -287,8 +278,8 @@ The Gitlab instructions mention that you can use flameshot for creating the init
 </div>
 </div>
 
-<div id="outline-container-org3be519d" class="outline-3">
-<h3 id="org3be519d"><span class="section-number-3">1.2.</span> gifsicle</h3>
+<div id="outline-container-org0efa82f" class="outline-3">
+<h3 id="org0efa82f"><span class="section-number-3">1.2.</span> gifsicle</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 <code>gifsicle</code> is an optional tool for <code>gif-screencast</code> that optimizes the gif file. If you don't install it, <code>gif-screencast</code> will still run and produce a gif output, but it will give a warning. <code>gisicle</code> was not available via my package manager, but can be build from source (<a href="https://github.com/kohler/gifsicle">github</a>):
@@ -316,8 +307,8 @@ sudo make install
 </div>
 </div>
 
-<div id="outline-container-org822c8d3" class="outline-2">
-<h2 id="org822c8d3"><span class="section-number-2">2.</span> Wrapper script</h2>
+<div id="outline-container-orgbc9accf" class="outline-2">
+<h2 id="orgbc9accf"><span class="section-number-2">2.</span> Wrapper script</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 The following wrapper script around grimshot will be called by <code>gif-screencat</code> every time you switch a buffer/window to create a screenshot:
@@ -334,8 +325,8 @@ Save this script and make it executable, e.g., .
 </div>
 </div>
 
-<div id="outline-container-orgd640bc6" class="outline-2">
-<h2 id="orgd640bc6"><span class="section-number-2">3.</span> Emacs setup</h2>
+<div id="outline-container-orgbafcda4" class="outline-2">
+<h2 id="orgbafcda4"><span class="section-number-2">3.</span> Emacs setup</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Make sure to point the <code>gif-screencast-program</code> variable to the wrapper script.
@@ -357,8 +348,8 @@ Make sure to point the <code>gif-screencast-program</code> variable to the wrapp
 </div>
 </div>
 
-<div id="outline-container-orgd30f585" class="outline-2">
-<h2 id="orgd30f585"><span class="section-number-2">4.</span> Output</h2>
+<div id="outline-container-org5d55b62" class="outline-2">
+<h2 id="org5d55b62"><span class="section-number-2">4.</span> Output</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 If you don't set the <code>gif-screencast-output-directory</code> variable, by default, the temporary screenshots will be stored under <code>/tmp/emacs&lt;uid&gt;</code> and the output gif files will be stored under <code>~/Videos</code>.
@@ -366,8 +357,8 @@ If you don't set the <code>gif-screencast-output-directory</code> variable, by d
 </div>
 </div>
 
-<div id="outline-container-orgf805b6d" class="outline-2">
-<h2 id="orgf805b6d"><span class="section-number-2">5.</span> Usage</h2>
+<div id="outline-container-orgb4afce5" class="outline-2">
+<h2 id="orgb4afce5"><span class="section-number-2">5.</span> Usage</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Once installed, you can start and stop the screencast with <code>M-x gif-screencast-start-or-stop</code>.
@@ -375,11 +366,11 @@ Once installed, you can start and stop the screencast with <code>M-x gif-screenc
 </div>
 </div>
 
-<div id="outline-container-orgeb4cc73" class="outline-2">
-<h2 id="orgeb4cc73"><span class="section-number-2">6.</span> Example</h2>
+<div id="outline-container-orgc8a43c6" class="outline-2">
+<h2 id="orgc8a43c6"><span class="section-number-2">6.</span> Example</h2>
 <div class="outline-text-2" id="text-6">
 
-<div id="org469b4a0" class="figure">
+<div id="org3126410" class="figure">
 <p><img src="./attachments/20260309_GifScreenCast.gif" alt="20260309_GifScreenCast.gif" width="800px" />
 </p>
 <p><span class="figure-number">Figure 1: </span>gif-screencast example</p>
@@ -388,7 +379,7 @@ Once installed, you can start and stop the screencast with <code>M-x gif-screenc
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2026-03-16 Mon 21:51</p>
+<p class="date">Created: 2026-03-16 Mon 22:00</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
