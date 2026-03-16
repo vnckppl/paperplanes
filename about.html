@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-16 Mon 21:47 -->
+<!-- 2026-03-16 Mon 21:51 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>About</title>
@@ -203,10 +203,8 @@ hljs.highlightElement(block);
 });
 </script>
 <style>
-.src-wrapper { position: relative; display: inline-block; width: 100%; }
-.copy-btn { position: absolute; top: 5px; right: 5px; padding: 5px 10px; background: #333; color: #fff; border: none; cursor: pointer; border-radius: 3px; font-size: 12px; }
-.copy-btn:hover { background: #555; }
-.copy-btn.copied { background: #4CAF50; }
+pre.src { position: relative; padding-top: 30px; }
+.copy-btn { position: absolute; top: 5px; right: 5px; padding: 5px 10px; background: #333; color: #fff; border: none; cursor: pointer; }
 </style>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -215,13 +213,16 @@ hljs.highlightElement(block);
 
 let btn = document.createElement('button');
 btn.className = 'copy-btn';
-btn.textContent = 'Copy';
-btn.onclick = function() {
-navigator.clipboard.writeText(block.textContent);
-btn.textContent = 'Copied!';
-setTimeout(() => btn.textContent = 'Copy', 2000);
-};
-block.parentNode.insertBefore(btn, block);
+btn.innerHTML = 'Copy';
+btn.addEventListener('click', function(e) {
+e.preventDefault();
+let text = block.innerText;
+navigator.clipboard.writeText(text).then(() => {
+btn.innerHTML = 'Copied!';
+setTimeout(() => btn.innerHTML = 'Copy', 2000);
+});
+});
+block.parentElement.insertBefore(btn, block);
 });
 });
 </script>
@@ -263,7 +264,7 @@ wrapper.appendChild(sidebar);
 </p>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2026-03-16 Mon 21:47</p>
+<p class="date">Created: 2026-03-16 Mon 21:51</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
