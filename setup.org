@@ -4,15 +4,8 @@
 # Code block syntax highlighting
 #+HTML_HEAD: <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/base16/apprentice.min.css">
 #+HTML_HEAD: <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-#+HTML_HEAD: <script>
-#+HTML_HEAD:   document.addEventListener('DOMContentLoaded', function() {
-#+HTML_HEAD:     document.querySelectorAll('pre.src').forEach(function(block) {
-#+HTML_HEAD:       hljs.highlightElement(block);
-#+HTML_HEAD:     });
-#+HTML_HEAD:   });
-#+HTML_HEAD: </script>
 
-# Copy buttons for code blocks
+# Copy buttons + highlighting
 #+HTML_HEAD: <style>
 #+HTML_HEAD:   pre.src { position: relative; padding-top: 30px; }
 #+HTML_HEAD:   .copy-btn { position: absolute; top: 5px; right: 5px; padding: 5px 10px; background: #333; color: #fff; border: none; cursor: pointer; }
@@ -21,14 +14,12 @@
 #+HTML_HEAD:   document.addEventListener('DOMContentLoaded', function() {
 #+HTML_HEAD:     document.querySelectorAll('pre.src').forEach(function(block) {
 #+HTML_HEAD:       hljs.highlightElement(block);
-#+HTML_HEAD:
 #+HTML_HEAD:       let btn = document.createElement('button');
 #+HTML_HEAD:       btn.className = 'copy-btn';
 #+HTML_HEAD:       btn.innerHTML = 'Copy';
 #+HTML_HEAD:       btn.addEventListener('click', function(e) {
 #+HTML_HEAD:         e.preventDefault();
-#+HTML_HEAD:         let text = block.innerText;
-#+HTML_HEAD:         navigator.clipboard.writeText(text).then(() => {
+#+HTML_HEAD:         navigator.clipboard.writeText(block.innerText).then(() => {
 #+HTML_HEAD:           btn.innerHTML = 'Copied!';
 #+HTML_HEAD:           setTimeout(() => btn.innerHTML = 'Copy', 2000);
 #+HTML_HEAD:         });
