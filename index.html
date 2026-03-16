@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-14 Sat 06:17 -->
+<!-- 2026-03-16 Mon 21:47 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Blog Posts Revolving Around Coding, Configuring Emacs, and Neuroscience</title>
@@ -202,6 +202,29 @@ hljs.highlightElement(block);
 });
 });
 </script>
+<style>
+.src-wrapper { position: relative; display: inline-block; width: 100%; }
+.copy-btn { position: absolute; top: 5px; right: 5px; padding: 5px 10px; background: #333; color: #fff; border: none; cursor: pointer; border-radius: 3px; font-size: 12px; }
+.copy-btn:hover { background: #555; }
+.copy-btn.copied { background: #4CAF50; }
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+document.querySelectorAll('pre.src').forEach(function(block) {
+hljs.highlightElement(block);
+
+let btn = document.createElement('button');
+btn.className = 'copy-btn';
+btn.textContent = 'Copy';
+btn.onclick = function() {
+navigator.clipboard.writeText(block.textContent);
+btn.textContent = 'Copied!';
+setTimeout(() => btn.textContent = 'Copy', 2000);
+};
+block.parentNode.insertBefore(btn, block);
+});
+});
+</script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
 var sidebar = document.createElement('nav');
@@ -224,8 +247,8 @@ wrapper.appendChild(sidebar);
 <div id="content" class="content">
 <h1 class="title">Blog Posts Revolving Around Coding, Configuring Emacs, and Neuroscience</h1>
 
-<div id="outline-container-org04a662d" class="outline-2">
-<h2 id="org04a662d"><span class="section-number-2">1.</span> Posts</h2>
+<div id="outline-container-org0368718" class="outline-2">
+<h2 id="org0368718"><span class="section-number-2">1.</span> Posts</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>2026-03-08 <a href="2026/20260308_EmacsElpyPytonDocker.html">Setting up Python Inside a Docker Container for Emacs Elpy</a></li>
@@ -235,7 +258,7 @@ wrapper.appendChild(sidebar);
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2026-03-14 Sat 06:17</p>
+<p class="date">Created: 2026-03-16 Mon 21:47</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

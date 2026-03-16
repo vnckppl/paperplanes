@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-14 Sat 06:17 -->
+<!-- 2026-03-16 Mon 21:47 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>About</title>
@@ -202,6 +202,29 @@ hljs.highlightElement(block);
 });
 });
 </script>
+<style>
+.src-wrapper { position: relative; display: inline-block; width: 100%; }
+.copy-btn { position: absolute; top: 5px; right: 5px; padding: 5px 10px; background: #333; color: #fff; border: none; cursor: pointer; border-radius: 3px; font-size: 12px; }
+.copy-btn:hover { background: #555; }
+.copy-btn.copied { background: #4CAF50; }
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+document.querySelectorAll('pre.src').forEach(function(block) {
+hljs.highlightElement(block);
+
+let btn = document.createElement('button');
+btn.className = 'copy-btn';
+btn.textContent = 'Copy';
+btn.onclick = function() {
+navigator.clipboard.writeText(block.textContent);
+btn.textContent = 'Copied!';
+setTimeout(() => btn.textContent = 'Copy', 2000);
+};
+block.parentNode.insertBefore(btn, block);
+});
+});
+</script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
 var sidebar = document.createElement('nav');
@@ -240,7 +263,7 @@ wrapper.appendChild(sidebar);
 </p>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2026-03-14 Sat 06:17</p>
+<p class="date">Created: 2026-03-16 Mon 21:47</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
