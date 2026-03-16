@@ -14,10 +14,8 @@
 
 # Copy buttons for code blocks
 #+HTML_HEAD: <style>
-#+HTML_HEAD:   .src-wrapper { position: relative; display: inline-block; width: 100%; }
-#+HTML_HEAD:   .copy-btn { position: absolute; top: 5px; right: 5px; padding: 5px 10px; background: #333; color: #fff; border: none; cursor: pointer; border-radius: 3px; font-size: 12px; }
-#+HTML_HEAD:   .copy-btn:hover { background: #555; }
-#+HTML_HEAD:   .copy-btn.copied { background: #4CAF50; }
+#+HTML_HEAD:   pre.src { position: relative; padding-top: 30px; }
+#+HTML_HEAD:   .copy-btn { position: absolute; top: 5px; right: 5px; padding: 5px 10px; background: #333; color: #fff; border: none; cursor: pointer; }
 #+HTML_HEAD: </style>
 #+HTML_HEAD: <script>
 #+HTML_HEAD:   document.addEventListener('DOMContentLoaded', function() {
@@ -26,13 +24,16 @@
 #+HTML_HEAD:
 #+HTML_HEAD:       let btn = document.createElement('button');
 #+HTML_HEAD:       btn.className = 'copy-btn';
-#+HTML_HEAD:       btn.textContent = 'Copy';
-#+HTML_HEAD:       btn.onclick = function() {
-#+HTML_HEAD:         navigator.clipboard.writeText(block.textContent);
-#+HTML_HEAD:         btn.textContent = 'Copied!';
-#+HTML_HEAD:         setTimeout(() => btn.textContent = 'Copy', 2000);
-#+HTML_HEAD:       };
-#+HTML_HEAD:       block.parentNode.insertBefore(btn, block);
+#+HTML_HEAD:       btn.innerHTML = 'Copy';
+#+HTML_HEAD:       btn.addEventListener('click', function(e) {
+#+HTML_HEAD:         e.preventDefault();
+#+HTML_HEAD:         let text = block.innerText;
+#+HTML_HEAD:         navigator.clipboard.writeText(text).then(() => {
+#+HTML_HEAD:           btn.innerHTML = 'Copied!';
+#+HTML_HEAD:           setTimeout(() => btn.innerHTML = 'Copy', 2000);
+#+HTML_HEAD:         });
+#+HTML_HEAD:       });
+#+HTML_HEAD:       block.parentElement.insertBefore(btn, block);
 #+HTML_HEAD:     });
 #+HTML_HEAD:   });
 #+HTML_HEAD: </script>
