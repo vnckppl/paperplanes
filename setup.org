@@ -7,15 +7,14 @@
 
 # Copy buttons + highlighting
 #+HTML_HEAD: <style>
-#+HTML_HEAD:   .org-src-container { position: relative; }
-#+HTML_HEAD:   .copy-btn { position: absolute; top: 10px; right: 10px; padding: 5px 10px; background: #333; color: #fff; border: none; cursor: pointer; z-index: 10; }
+#+HTML_HEAD:   .org-src-container { position: relative; margin-bottom: 20px; }
+#+HTML_HEAD:   .copy-btn { display: block; margin-top: 5px; margin-bottom: 10px; padding: 5px 10px; background: #333; color: #fff; border: none; cursor: pointer; width: fit-content; }
 #+HTML_HEAD:   .copy-btn:hover { background: #555; }
 #+HTML_HEAD: </style>
 #+HTML_HEAD: <script>
 #+HTML_HEAD:   document.addEventListener('DOMContentLoaded', function() {
 #+HTML_HEAD:     document.querySelectorAll('pre.src').forEach(function(block) {
 #+HTML_HEAD:       hljs.highlightElement(block);
-#+HTML_HEAD:       let container = block.closest('.org-src-container');
 #+HTML_HEAD:       let btn = document.createElement('button');
 #+HTML_HEAD:       btn.className = 'copy-btn';
 #+HTML_HEAD:       btn.innerHTML = 'Copy';
@@ -24,7 +23,7 @@
 #+HTML_HEAD:         btn.innerHTML = 'Copied!';
 #+HTML_HEAD:         setTimeout(() => btn.innerHTML = 'Copy', 2000);
 #+HTML_HEAD:       };
-#+HTML_HEAD:       container.insertBefore(btn, block);
+#+HTML_HEAD:       block.parentNode.insertBefore(btn, block.nextSibling);
 #+HTML_HEAD:     });
 #+HTML_HEAD:   });
 #+HTML_HEAD: </script>
