@@ -55,15 +55,27 @@
 #+HTML_HEAD:   #page-logo { text-align: center; margin: 0 auto 2em auto; }
 #+HTML_HEAD:   #page-logo img { max-width: 200px; height: auto; filter: invert(1); }
 #+HTML_HEAD: </style>
+
 #+HTML_HEAD: <script>
-#+HTML_HEAD:   document.addEventListener('DOMContentLoaded', function() {
-#+HTML_HEAD:     var pathname = window.location.pathname;
-#+HTML_HEAD:     var depth = (pathname.match(/\//g) || []).length - 1;
-#+HTML_HEAD:     var pathPrefix = depth > 0 ? Array(depth).fill('..').join('/') + '/' : '';
-#+HTML_HEAD:     var logo = document.createElement('div');
-#+HTML_HEAD:     logo.id = 'page-logo';
-#+HTML_HEAD:     logo.innerHTML = '<img src="' + pathPrefix + 'paperplane.svg" alt="Logo">';
-#+HTML_HEAD:     var content = document.getElementById('content');
+#+HTML_HEAD: document.addEventListener('DOMContentLoaded', function() {
+#+HTML_HEAD:   var path = window.location.pathname;
+#+HTML_HEAD:
+#+HTML_HEAD:   var segments = path.replace(/^\/|\/$/g, '').split('/');
+#+HTML_HEAD:
+#+HTML_HEAD:   if (segments.length && segments[segments.length - 1].includes('.')) {
+#+HTML_HEAD:     segments.pop();
+#+HTML_HEAD:   }
+#+HTML_HEAD:
+#+HTML_HEAD:   var depth = segments.length;
+#+HTML_HEAD:   var pathPrefix = depth > 0 ? '../'.repeat(depth) : '';
+#+HTML_HEAD:
+#+HTML_HEAD:   var logo = document.createElement('div');
+#+HTML_HEAD:   logo.id = 'page-logo';
+#+HTML_HEAD:   logo.innerHTML = '<img src="' + pathPrefix + 'paperplane.svg" alt="Logo">';
+#+HTML_HEAD:
+#+HTML_HEAD:   var content = document.getElementById('content');
+#+HTML_HEAD:   if (content) {
 #+HTML_HEAD:     content.insertBefore(logo, content.firstChild);
-#+HTML_HEAD:   });
+#+HTML_HEAD:   }
+#+HTML_HEAD: });
 #+HTML_HEAD: </script>
