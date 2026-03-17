@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-17 Tue 01:32 -->
+<!-- 2026-03-17 Tue 01:39 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>About</title>
@@ -192,8 +192,7 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<base href="/paperplanes/">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="/paperplanes/style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/base16/apprentice.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 <style>
@@ -240,9 +239,20 @@ wrapper.appendChild(sidebar);
 </style>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+var path = window.location.pathname;
+
+var segments = path.replace(/^\/|\/$/g, '').split('/');
+
+if (segments.length && segments[segments.length - 1].includes('.')) {
+segments.pop();
+}
+
+var depth = Math.max(0, segments.length - 1);
+var pathPrefix = depth > 0 ? '../'.repeat(depth) : '';
+
 var logo = document.createElement('div');
 logo.id = 'page-logo';
-logo.innerHTML = '<img src="paperplane.svg" alt="Logo">';
+logo.innerHTML = '<img src="' + pathPrefix + 'paperplane.svg" alt="Logo">';
 
 var content = document.getElementById('content');
 if (content) {
@@ -271,7 +281,7 @@ content.insertBefore(logo, content.firstChild);
 </p>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2026-03-17 Tue 01:32</p>
+<p class="date">Created: 2026-03-17 Tue 01:39</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
