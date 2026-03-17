@@ -2,7 +2,7 @@
 #+HTML_HEAD: <base href="/paperplanes/">
 
 # Local css
-#+HTML_HEAD: <link rel="stylesheet" href="/paperplanes/style.css">
+#+HTML_HEAD: <link rel="stylesheet" href="style.css">
 
 # Code block syntax highlighting
 #+HTML_HEAD: <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/base16/apprentice.min.css">
