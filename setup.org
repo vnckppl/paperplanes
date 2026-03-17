@@ -57,7 +57,7 @@
 #+HTML_HEAD:   document.addEventListener('DOMContentLoaded', function() {
 #+HTML_HEAD:     var logo = document.createElement('div');
 #+HTML_HEAD:     logo.id = 'page-logo';
-#+HTML_HEAD:     logo.innerHTML = '<img src="/paperplane.svg" alt="Logo">';
+#+HTML_HEAD:     logo.innerHTML = '<img src="paperplane.svg" alt="Logo">';
 #+HTML_HEAD:     var content = document.getElementById('content');
 #+HTML_HEAD:     content.parentNode.insertBefore(logo, content);
 #+HTML_HEAD:   });
