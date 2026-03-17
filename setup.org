@@ -49,15 +49,19 @@
 
 # Figure at top of the page
 # Figure modified from vecteezy_paper-plane-drawing-using-continuous-single-one-line-art__884.zip
+# The script ensurs that the paperplane.svg image shows up on all pages, regardless of how deep
+# the folder structure is.
 #+HTML_HEAD: <style>
 #+HTML_HEAD:   #page-logo { text-align: center; margin: 0 auto 2em auto; }
 #+HTML_HEAD:   #page-logo img { max-width: 200px; height: auto; filter: invert(1); }
 #+HTML_HEAD: </style>
 #+HTML_HEAD: <script>
 #+HTML_HEAD:   document.addEventListener('DOMContentLoaded', function() {
+#+HTML_HEAD:     var pathDepth = window.location.pathname.split('/').filter(Boolean).length - 1;
+#+HTML_HEAD:     var pathPrefix = pathDepth > 0 ? Array(pathDepth).fill('..').join('/') + '/' : '';
 #+HTML_HEAD:     var logo = document.createElement('div');
 #+HTML_HEAD:     logo.id = 'page-logo';
-#+HTML_HEAD:   logo.innerHTML = '<img src="/paperplane.svg" alt="Logo">';
+#+HTML_HEAD:     logo.innerHTML = '<img src="' + pathPrefix + 'paperplane.svg" alt="Logo">';
 #+HTML_HEAD:     var content = document.getElementById('content');
 #+HTML_HEAD:     content.insertBefore(logo, content.firstChild);
 #+HTML_HEAD:   });
