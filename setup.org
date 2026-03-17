@@ -50,15 +50,15 @@
 # Figure at top of the page
 # Figure modified from vecteezy_paper-plane-drawing-using-continuous-single-one-line-art__884.zip
 #+HTML_HEAD: <style>
-#+HTML_HEAD:   #page-logo { text-align: center; margin-bottom: 2em; }
-#+HTML_HEAD:   #page-logo img { max-width: 200px; height: auto; }
+#+HTML_HEAD:   #page-logo { text-align: center; margin: 0 auto 2em auto; }
+#+HTML_HEAD:   #page-logo img { max-width: 200px; height: auto; filter: invert(1); }
 #+HTML_HEAD: </style>
 #+HTML_HEAD: <script>
 #+HTML_HEAD:   document.addEventListener('DOMContentLoaded', function() {
 #+HTML_HEAD:     var logo = document.createElement('div');
 #+HTML_HEAD:     logo.id = 'page-logo';
-#+HTML_HEAD:     logo.innerHTML = '<img src="paperplane.svg" alt="Logo">';
+#+HTML_HEAD:     logo.innerHTML = '<img src="/path/to/image.svg" alt="Logo">';
 #+HTML_HEAD:     var content = document.getElementById('content');
-#+HTML_HEAD:     content.parentNode.insertBefore(logo, content);
+#+HTML_HEAD:     content.insertBefore(logo, content.firstChild);
 #+HTML_HEAD:   });
 #+HTML_HEAD: </script>
