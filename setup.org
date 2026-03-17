@@ -1,8 +1,5 @@
-# Base path
-#+HTML_HEAD: <base href="/paperplanes/">
-
 # Local css
-#+HTML_HEAD: <link rel="stylesheet" href="style.css">
+#+HTML_HEAD: <link rel="stylesheet" href="/paperplanes/style.css">
 
 # Code block syntax highlighting
 #+HTML_HEAD: <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/base16/apprentice.min.css">
@@ -61,9 +58,20 @@
 
 #+HTML_HEAD: <script>
 #+HTML_HEAD: document.addEventListener('DOMContentLoaded', function() {
+#+HTML_HEAD:   var path = window.location.pathname;
+#+HTML_HEAD:
+#+HTML_HEAD:   var segments = path.replace(/^\/|\/$/g, '').split('/');
+#+HTML_HEAD:
+#+HTML_HEAD:   if (segments.length && segments[segments.length - 1].includes('.')) {
+#+HTML_HEAD:     segments.pop();
+#+HTML_HEAD:   }
+#+HTML_HEAD:
+#+HTML_HEAD:   var depth = Math.max(0, segments.length - 1);
+#+HTML_HEAD:   var pathPrefix = depth > 0 ? '../'.repeat(depth) : '';
+#+HTML_HEAD:
 #+HTML_HEAD:   var logo = document.createElement('div');
 #+HTML_HEAD:   logo.id = 'page-logo';
-#+HTML_HEAD:   logo.innerHTML = '<img src="paperplane.svg" alt="Logo">';
+#+HTML_HEAD:   logo.innerHTML = '<img src="' + pathPrefix + 'paperplane.svg" alt="Logo">';
 #+HTML_HEAD:
 #+HTML_HEAD:   var content = document.getElementById('content');
 #+HTML_HEAD:   if (content) {
