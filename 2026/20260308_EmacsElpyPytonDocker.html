@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-17 Tue 01:06 -->
+<!-- 2026-03-17 Tue 01:11 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Use Python Inside a Docker Container for Emacs Elpy</title>
@@ -239,9 +239,11 @@ wrapper.appendChild(sidebar);
 </style>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+var pathDepth = window.location.pathname.split('/').filter(Boolean).length - 1;
+var pathPrefix = pathDepth > 0 ? Array(pathDepth).fill('..').join('/') + '/' : '';
 var logo = document.createElement('div');
 logo.id = 'page-logo';
-logo.innerHTML = '<img src="/paperplane.svg" alt="Logo">';
+logo.innerHTML = '<img src="' + pathPrefix + 'paperplane.svg" alt="Logo">';
 var content = document.getElementById('content');
 content.insertBefore(logo, content.firstChild);
 });
@@ -254,18 +256,18 @@ content.insertBefore(logo, content.firstChild);
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgc7b07c3">1. Write the Docker recipe file</a></li>
-<li><a href="#org94c27d5">2. Build the docker from the recipe</a></li>
-<li><a href="#org62cc314">3. Run via emacs</a>
+<li><a href="#orgcf8af86">1. Write the Docker recipe file</a></li>
+<li><a href="#orgd07ed25">2. Build the docker from the recipe</a></li>
+<li><a href="#orgea37f5a">3. Run via emacs</a>
 <ul>
-<li><a href="#org42fb62b">3.1. Wrapper script</a>
+<li><a href="#orgc9dea69">3.1. Wrapper script</a>
 <ul>
-<li><a href="#org5d32d91">3.1.1. Run docker</a></li>
-<li><a href="#org6639664">3.1.2. Create a wrapper script for starting the container</a></li>
+<li><a href="#orgbc8fe35">3.1.1. Run docker</a></li>
+<li><a href="#orgf9c2aab">3.1.2. Create a wrapper script for starting the container</a></li>
 </ul>
 </li>
-<li><a href="#org436c260">3.2. Emacs setup</a></li>
-<li><a href="#orgb10abba">3.3. Example</a></li>
+<li><a href="#orgc7fd5d5">3.2. Emacs setup</a></li>
+<li><a href="#org9d54e12">3.3. Example</a></li>
 </ul>
 </li>
 </ul>
@@ -275,8 +277,8 @@ content.insertBefore(logo, content.firstChild);
 For a particular project I needed to use python 3.11, but my system had 3.12 installed. While I could use readily available tools (pyenv) or build python from source, I wanted to see if I could use python in a docker environment directly inside emacs via elpy. The main goals was to use the python interpreter interactively when editing python source blocks in org mode files. The following steps made this possible:
 </p>
 
-<div id="outline-container-orgc7b07c3" class="outline-2">
-<h2 id="orgc7b07c3"><span class="section-number-2">1.</span> Write the Docker recipe file</h2>
+<div id="outline-container-orgcf8af86" class="outline-2">
+<h2 id="orgcf8af86"><span class="section-number-2">1.</span> Write the Docker recipe file</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 I tangled the recipe to <code>/tmp/dockerfile_python311</code>.
@@ -308,8 +310,8 @@ CMD ["python3"]
 </div>
 </div>
 
-<div id="outline-container-org94c27d5" class="outline-2">
-<h2 id="org94c27d5"><span class="section-number-2">2.</span> Build the docker from the recipe</h2>
+<div id="outline-container-orgd07ed25" class="outline-2">
+<h2 id="orgd07ed25"><span class="section-number-2">2.</span> Build the docker from the recipe</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 <pre class="src src-bash">docker \
@@ -322,20 +324,20 @@ CMD ["python3"]
 </div>
 </div>
 
-<div id="outline-container-org62cc314" class="outline-2">
-<h2 id="org62cc314"><span class="section-number-2">3.</span> Run via emacs</h2>
+<div id="outline-container-orgea37f5a" class="outline-2">
+<h2 id="orgea37f5a"><span class="section-number-2">3.</span> Run via emacs</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 In Emacs, point elpy to the python 3.11 docker environment via a wrapper file:
 </p>
 </div>
 
-<div id="outline-container-org42fb62b" class="outline-3">
-<h3 id="org42fb62b"><span class="section-number-3">3.1.</span> Wrapper script</h3>
+<div id="outline-container-orgc9dea69" class="outline-3">
+<h3 id="orgc9dea69"><span class="section-number-3">3.1.</span> Wrapper script</h3>
 <div class="outline-text-3" id="text-3-1">
 </div>
-<div id="outline-container-org5d32d91" class="outline-4">
-<h4 id="org5d32d91"><span class="section-number-4">3.1.1.</span> Run docker</h4>
+<div id="outline-container-orgbc8fe35" class="outline-4">
+<h4 id="orgbc8fe35"><span class="section-number-4">3.1.1.</span> Run docker</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <p>
 Run docker with mounts and leave it open in a shell. E.g.,
@@ -360,8 +362,8 @@ docker run \
 </div>
 </div>
 
-<div id="outline-container-org6639664" class="outline-4">
-<h4 id="org6639664"><span class="section-number-4">3.1.2.</span> Create a wrapper script for starting the container</h4>
+<div id="outline-container-orgf9c2aab" class="outline-4">
+<h4 id="orgf9c2aab"><span class="section-number-4">3.1.2.</span> Create a wrapper script for starting the container</h4>
 <div class="outline-text-4" id="text-3-1-2">
 <p>
 I tangled this to <code>/tmp/python3.11</code>. If you want something persistent, pick a different path (outside of <code>/tmp</code>)
@@ -382,8 +384,8 @@ You have to run this wrapper script prior to calling python commands in emacs to
 </div>
 </div>
 
-<div id="outline-container-org436c260" class="outline-3">
-<h3 id="org436c260"><span class="section-number-3">3.2.</span> Emacs setup</h3>
+<div id="outline-container-orgc7fd5d5" class="outline-3">
+<h3 id="orgc7fd5d5"><span class="section-number-3">3.2.</span> Emacs setup</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 Run the following to ensure that the python REPL from the docker is used.
@@ -400,11 +402,11 @@ Now I was able to run the desired python configuration inside emacs. To me, this
 </div>
 </div>
 
-<div id="outline-container-orgb10abba" class="outline-3">
-<h3 id="orgb10abba"><span class="section-number-3">3.3.</span> Example</h3>
+<div id="outline-container-org9d54e12" class="outline-3">
+<h3 id="org9d54e12"><span class="section-number-3">3.3.</span> Example</h3>
 <div class="outline-text-3" id="text-3-3">
 
-<div id="org0356562" class="figure">
+<div id="orgc355cd1" class="figure">
 <p><img src="./attachments/20260308_EmacsElpyPytonDocker.gif" alt="20260308_EmacsElpyPytonDocker.gif" width="800px" />
 </p>
 <p><span class="figure-number">Figure 1: </span>Running Python via Docker with elpy in emacs example</p>
@@ -414,7 +416,7 @@ Now I was able to run the desired python configuration inside emacs. To me, this
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2026-03-17 Tue 01:06</p>
+<p class="date">Created: 2026-03-17 Tue 01:11</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

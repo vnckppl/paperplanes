@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-17 Tue 01:06 -->
+<!-- 2026-03-17 Tue 01:11 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>gif-screencast on Ubuntu 24.04</title>
@@ -239,9 +239,11 @@ wrapper.appendChild(sidebar);
 </style>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+var pathDepth = window.location.pathname.split('/').filter(Boolean).length - 1;
+var pathPrefix = pathDepth > 0 ? Array(pathDepth).fill('..').join('/') + '/' : '';
 var logo = document.createElement('div');
 logo.id = 'page-logo';
-logo.innerHTML = '<img src="/paperplane.svg" alt="Logo">';
+logo.innerHTML = '<img src="' + pathPrefix + 'paperplane.svg" alt="Logo">';
 var content = document.getElementById('content');
 content.insertBefore(logo, content.firstChild);
 });
@@ -254,17 +256,17 @@ content.insertBefore(logo, content.firstChild);
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org8ba77b1">1. System prerequisites</a>
+<li><a href="#orgb4654c5">1. System prerequisites</a>
 <ul>
-<li><a href="#org28979c4">1.1. grimshot</a></li>
-<li><a href="#org7a32d29">1.2. gifsicle</a></li>
+<li><a href="#org8c09262">1.1. grimshot</a></li>
+<li><a href="#org6577490">1.2. gifsicle</a></li>
 </ul>
 </li>
-<li><a href="#org926fc33">2. Wrapper script</a></li>
-<li><a href="#orga59d613">3. Emacs setup</a></li>
-<li><a href="#orge09ab11">4. Output</a></li>
-<li><a href="#org6eb58f6">5. Usage</a></li>
-<li><a href="#orgae4d8d9">6. Example</a></li>
+<li><a href="#org944bbff">2. Wrapper script</a></li>
+<li><a href="#orge3dc684">3. Emacs setup</a></li>
+<li><a href="#org8809547">4. Output</a></li>
+<li><a href="#orgc6d0ad9">5. Usage</a></li>
+<li><a href="#org20afa49">6. Example</a></li>
 </ul>
 </div>
 </div>
@@ -272,12 +274,12 @@ content.insertBefore(logo, content.firstChild);
 <code>gif-screencast</code> is a tool to easily generate screencasts from emacs and save them as animated gifs. The package is available via MELPA and <a href="https://gitlab.com/ambrevar/emacs-gif-screencast">gitlab</a>. Configuration options differ per system, so I am sharing my setup for Ubuntu 24.04 with Wayland, as that particular combination is not listed in the setup instructions on Gitlab.
 </p>
 
-<div id="outline-container-org8ba77b1" class="outline-2">
-<h2 id="org8ba77b1"><span class="section-number-2">1.</span> System prerequisites</h2>
+<div id="outline-container-orgb4654c5" class="outline-2">
+<h2 id="orgb4654c5"><span class="section-number-2">1.</span> System prerequisites</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org28979c4" class="outline-3">
-<h3 id="org28979c4"><span class="section-number-3">1.1.</span> grimshot</h3>
+<div id="outline-container-org8c09262" class="outline-3">
+<h3 id="org8c09262"><span class="section-number-3">1.1.</span> grimshot</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 The Gitlab instructions mention that you can use flameshot for creating the initial screenshots. Because I already use grimshot, and because I don't feel the need to have multiple tools for generating screenshots on my system, I set up grimshot, which can be installed with:
@@ -290,8 +292,8 @@ The Gitlab instructions mention that you can use flameshot for creating the init
 </div>
 </div>
 
-<div id="outline-container-org7a32d29" class="outline-3">
-<h3 id="org7a32d29"><span class="section-number-3">1.2.</span> gifsicle</h3>
+<div id="outline-container-org6577490" class="outline-3">
+<h3 id="org6577490"><span class="section-number-3">1.2.</span> gifsicle</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 <code>gifsicle</code> is an optional tool for <code>gif-screencast</code> that optimizes the gif file. If you don't install it, <code>gif-screencast</code> will still run and produce a gif output, but it will give a warning. <code>gisicle</code> was not available via my package manager, but can be build from source (<a href="https://github.com/kohler/gifsicle">github</a>):
@@ -319,8 +321,8 @@ sudo make install
 </div>
 </div>
 
-<div id="outline-container-org926fc33" class="outline-2">
-<h2 id="org926fc33"><span class="section-number-2">2.</span> Wrapper script</h2>
+<div id="outline-container-org944bbff" class="outline-2">
+<h2 id="org944bbff"><span class="section-number-2">2.</span> Wrapper script</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 The following wrapper script around grimshot will be called by <code>gif-screencat</code> every time you switch a buffer/window to create a screenshot:
@@ -337,8 +339,8 @@ Save this script and make it executable, e.g., .
 </div>
 </div>
 
-<div id="outline-container-orga59d613" class="outline-2">
-<h2 id="orga59d613"><span class="section-number-2">3.</span> Emacs setup</h2>
+<div id="outline-container-orge3dc684" class="outline-2">
+<h2 id="orge3dc684"><span class="section-number-2">3.</span> Emacs setup</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Make sure to point the <code>gif-screencast-program</code> variable to the wrapper script.
@@ -360,8 +362,8 @@ Make sure to point the <code>gif-screencast-program</code> variable to the wrapp
 </div>
 </div>
 
-<div id="outline-container-orge09ab11" class="outline-2">
-<h2 id="orge09ab11"><span class="section-number-2">4.</span> Output</h2>
+<div id="outline-container-org8809547" class="outline-2">
+<h2 id="org8809547"><span class="section-number-2">4.</span> Output</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 If you don't set the <code>gif-screencast-output-directory</code> variable, by default, the temporary screenshots will be stored under <code>/tmp/emacs&lt;uid&gt;</code> and the output gif files will be stored under <code>~/Videos</code>.
@@ -369,8 +371,8 @@ If you don't set the <code>gif-screencast-output-directory</code> variable, by d
 </div>
 </div>
 
-<div id="outline-container-org6eb58f6" class="outline-2">
-<h2 id="org6eb58f6"><span class="section-number-2">5.</span> Usage</h2>
+<div id="outline-container-orgc6d0ad9" class="outline-2">
+<h2 id="orgc6d0ad9"><span class="section-number-2">5.</span> Usage</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Once installed, you can start and stop the screencast with <code>M-x gif-screencast-start-or-stop</code>.
@@ -378,11 +380,11 @@ Once installed, you can start and stop the screencast with <code>M-x gif-screenc
 </div>
 </div>
 
-<div id="outline-container-orgae4d8d9" class="outline-2">
-<h2 id="orgae4d8d9"><span class="section-number-2">6.</span> Example</h2>
+<div id="outline-container-org20afa49" class="outline-2">
+<h2 id="org20afa49"><span class="section-number-2">6.</span> Example</h2>
 <div class="outline-text-2" id="text-6">
 
-<div id="orgeb4be4e" class="figure">
+<div id="orgf51e0bf" class="figure">
 <p><img src="./attachments/20260309_GifScreenCast.gif" alt="20260309_GifScreenCast.gif" width="800px" />
 </p>
 <p><span class="figure-number">Figure 1: </span>gif-screencast example</p>
@@ -391,7 +393,7 @@ Once installed, you can start and stop the screencast with <code>M-x gif-screenc
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2026-03-17 Tue 01:06</p>
+<p class="date">Created: 2026-03-17 Tue 01:11</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
